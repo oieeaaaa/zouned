@@ -1,5 +1,11 @@
 $base-font-size: 10;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   font-size: $base-font-size + px;
   font-family: 'Modern Era', sans-serif;
@@ -7,4 +13,13 @@ html {
 
 body {
   font-size: 1.6rem;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
 }

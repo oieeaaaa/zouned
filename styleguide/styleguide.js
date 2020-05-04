@@ -1,26 +1,13 @@
-import { useState, useEffect } from 'react';
-import throttle from 'lodash.throttle';
+import { useState } from 'react';
 import Nav from './nav/nav';
 import componentList from './component-list';
+import GridGuides from './grid-guide';
 
 export default () => {
   const [activeComponent, setActiveComponent] = useState('');
 
-  useEffect(() => {
-    const toggleGrid = throttle((e) => {
-      if (e.ctrlKey && e.key === 'g') {
-        document.body.classList.toggle('active-grid');
-      }
-    }, 200);
-
-    window.addEventListener('keypress', toggleGrid);
-
-    return () => window.removeEventListener('keypress', toggleGrid);
-  });
-
-
   const renderComponents = (list) => {
-    if (!activeComponent) return () => {};
+    if (!activeComponent) return '';
 
     const Component = list.reduce((comp, curComp) => {
       if (activeComponent === curComp.name) {
@@ -39,6 +26,7 @@ export default () => {
       <main className="styleguide-main grid">
         {renderComponents(componentList)}
       </main>
+      <GridGuides />
     </div>
   );
 };
