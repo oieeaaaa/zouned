@@ -17,8 +17,8 @@ module.exports = function (plop) {
       },
       {
         type: 'input',
-        name: 'Component description:',
-        message: 'component description (will be useful for your co-devs)',
+        name: 'description',
+        message: 'Component description (will be useful for your co-devs)',
       },
     ],
     actions: [
