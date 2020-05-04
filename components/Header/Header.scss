@@ -2,10 +2,37 @@
 ***************************************
 Component: Header
 Author: Joimee
-Description: Layout &gt; Header
+Description: Layout > Header
 ***************************************
 */
 
 .header {
-  background-color: papayawhip;
+  background: $light-1;
+  box-shadow: $shadow-1;
+
+  .grid {
+    height: rem(40);
+    align-items: center;
+  }
+
+  &__brand {
+    grid-column: 2 / 4;
+
+    @include font('Bold');
+
+    font-size: rem(16);
+    line-height: rem(20);
+    color: $primary;
+  }
+
+  &-buttons {
+    grid-column: -5 / -2;
+
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-buttons > &__btn:first-child {
+    margin-right: rem(35);
+  }
 }
