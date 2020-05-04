@@ -1,11 +1,14 @@
 // colors
 $light-1: #fff;
 $light-2: #c4c4c4;
+$light-3: #f2f2f2;
 $dark-1: #000;
 $dark-2: #333;
+$dark-3: #828282;
 
 // palette
 $primary: #f55;
 
 // shadows
 $shadow-1: 0 1px 3px 0 rgba($dark-1, .1);
+$shadow-2: 0 0 0 .5px $dark-3;
