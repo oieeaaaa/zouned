@@ -1,0 +1,52 @@
+/*
+***************************************
+Component: Search
+Author: Joimee
+Description:
+***************************************
+*/
+
+.search {
+  &-box {
+    grid-column: 2 / -2;
+
+    display: flex;
+    align-items: center;
+    height: rem(40);
+    box-shadow: $shadow-2;
+  }
+
+  &__input {
+    @include font('Light');
+
+    flex-basis: (218 / 298) * 100%;
+    padding-left: rem(20);
+    font-size: rem(18);
+    line-height: rem(22);
+    color: $dark-3;
+    height: 100%;
+    border: none;
+  }
+
+  &__input[type="search"]::-ms-clear {
+    display: none;
+  }
+
+  &__input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  &__btn {
+    margin-right: rem(2);
+
+    @include flex-center;
+    @include font('Bold');
+
+    font-size: rem(16);
+    line-height: rem(20);
+    height: rem(36);
+    flex-basis: (80 / 298) * 100%;
+    color: $light-3;
+    background-color: $primary;
+  }
+}

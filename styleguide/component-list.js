@@ -1,4 +1,6 @@
 // list of components
+import Search from 'components/Search/Search.styleguide';
+
 import Icon from 'components/Icon/Icon.styleguide';
 
 import Header from 'components/Header/Header.styleguide';
@@ -9,6 +11,11 @@ import Button from 'components/button/button.styleguide';
 
 
 export default [
+  {
+    name: 'Search',
+    component: Search,
+  },
+
   {
     name: 'Icon',
     component: Icon,
