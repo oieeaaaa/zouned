@@ -13,9 +13,12 @@
 
 // styleguide
 @import 'styleguide/styleguide';
+@import 'styleguide/grid-guide';
 @import 'styleguide/nav/nav';
 
 // components
+@import 'components/Header/Header';
+
 @import 'components/card/card';
 
 @import 'components/button/button';
