@@ -1,0 +1,43 @@
+/*
+***************************************
+Component: PlayCard
+Author: Joimee
+Description:
+***************************************
+*/
+
+.play-card {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: rem(100);
+  padding: rem(20);
+  z-index: 1;
+  overflow: hidden;
+
+  &::before {
+    @include center;
+
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: rgba(34, 34, 34, .5);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &__btn {
+    margin-right: rem(20);
+  }
+
+  &__title {
+    @include font('Light');
+
+    font-size: rem(18);
+    line-height: rem(22);
+    color: $light-3;
+    white-space: nowrap;
+  }
+}
