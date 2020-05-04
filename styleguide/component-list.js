@@ -1,4 +1,6 @@
 // list of components
+import MinimalCard from 'components/MinimalCard/MinimalCard.styleguide';
+
 import Search from 'components/Search/Search.styleguide';
 
 import Icon from 'components/Icon/Icon.styleguide';
@@ -11,6 +13,11 @@ import Button from 'components/button/button.styleguide';
 
 
 export default [
+  {
+    name: 'Minimal Card',
+    component: MinimalCard,
+  },
+
   {
     name: 'Search',
     component: Search,
