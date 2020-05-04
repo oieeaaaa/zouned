@@ -1,4 +1,8 @@
 // list of components
+import PlayCard from 'components/PlayCard/PlayCard.styleguide';
+
+import MinimalCard from 'components/MinimalCard/MinimalCard.styleguide';
+
 import Search from 'components/Search/Search.styleguide';
 
 import Icon from 'components/Icon/Icon.styleguide';
@@ -11,6 +15,16 @@ import Button from 'components/button/button.styleguide';
 
 
 export default [
+  {
+    name: 'PlayCard',
+    component: PlayCard,
+  },
+
+  {
+    name: 'Minimal Card',
+    component: MinimalCard,
+  },
+
   {
     name: 'Search',
     component: Search,

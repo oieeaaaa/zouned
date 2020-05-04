@@ -10,6 +10,7 @@
   }
 
   &__button {
+    white-space: nowrap;
     border: rem(1) solid $light-2;
     border-radius: rem(3);
     font-size: rem(16);
