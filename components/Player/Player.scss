@@ -1,0 +1,95 @@
+/*
+***************************************
+Component: Player
+Author: Joimee
+Description:
+***************************************
+*/
+
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $dark-1;
+  z-index: 9999;
+
+  &-progress {
+    position: relative;
+    width: 100%;
+    height: rem(5);
+    background-color: $light-3;
+  }
+
+  &-progress > progress {
+    -webkit-appearance: none;
+
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: rem(5);
+    z-index: 2;
+  }
+
+  &-progress-bar {
+    height: rem(5);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: $primary;
+    z-index: 1;
+  }
+
+  &-progress-bar__btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: rem(20);
+    height: rem(20);
+    border-radius: 50%;
+    background-color: $light-1;
+    box-shadow: $shadow-2;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  &-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(15) rem(20);
+  }
+
+  &__time {
+    @include font('Light');
+
+    color: rgba($light-2, .6);
+  }
+
+  &-buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__play {
+    margin: 0 rem(30);
+  }
+
+  &__play svg {
+    width: rem(30);
+    height: rem(30);
+  }
+
+  &-footer {
+    @include flex-center;
+    @include font('Bold');
+
+    height: rem(30);
+    text-align: center;
+    color: $light-3;
+  }
+}

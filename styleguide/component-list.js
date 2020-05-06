@@ -1,4 +1,6 @@
 // list of components
+import Player from 'components/Player/Player.styleguide';
+
 import PlayCard from 'components/PlayCard/PlayCard.styleguide';
 
 import MinimalCard from 'components/MinimalCard/MinimalCard.styleguide';
@@ -15,6 +17,11 @@ import Button from 'components/button/button.styleguide';
 
 
 export default [
+  {
+    name: 'Player',
+    component: Player,
+  },
+
   {
     name: 'PlayCard',
     component: PlayCard,

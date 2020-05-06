@@ -32,6 +32,7 @@
     "react/jsx-props-no-spreading": "off",
     "func-names": "off",
     "no-param-reassign": "off",
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "consistent-return": "off"
   }
 }
