@@ -11,27 +11,35 @@ Author: Joimee
 Description:
 ***************************************
 */
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect, useReducer } from 'react';
 import throttle from 'lodash.throttle';
 import Icon from 'components/Icon/Icon';
 import convertTime from 'js/helpers/convertTime';
+import
+playerReducer,
+{
+  initState,
+  SET_PLAYING,
+  SET_DURATION,
+  SET_DRAG_HOLD,
+  SET_TIMEUPDATE,
+  RESET,
+} from './PlayerReducer';
 
 export default ({
   title,
   songSrc,
+  onNext,
+  onPrev,
 }) => {
   const audio = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const [timePlaying, setTimePlaying] = useState(0);
-  const [isDragHold, setIsDragHold] = useState(false);
+  const [state, dispatch] = useReducer(playerReducer, initState);
 
   useEffect(() => {
     if (!audio) return;
 
     const onDrag = throttle(e => {
-      if (!isDragHold) return;
+      if (!state.isDragHold) return;
       const { current } = audio;
       let el = e;
 
@@ -41,14 +49,21 @@ export default ({
 
       const position = (el.clientX / window.innerWidth);
 
-      current.currentTime = position * duration;
+      current.currentTime = position * state.duration;
     }, 50);
 
 
     const onDragOff = () => {
       const { current } = audio;
-      current.play();
-      setIsDragHold(false);
+
+      if (state.isPlaying) {
+        current.play();
+      }
+
+      dispatch({
+        type: SET_DRAG_HOLD,
+        isDragHold: false,
+      });
     };
 
     window.addEventListener('mousemove', onDrag);
@@ -59,38 +74,46 @@ export default ({
     return () => {
       window.removeEventListener('mousemove', onDrag);
       window.removeEventListener('touchmove', onDrag);
-
       window.removeEventListener('mouseup', onDragOff);
       window.removeEventListener('touchend', onDragOff);
     };
-  }, [audio, duration, isDragHold]);
+  }, [audio, state.duration, state.isDragHold]);
 
   const onPlay = e => {
     e.preventDefault();
     const { current } = audio;
 
-    if (isPlaying) {
+    if (state.isPlaying) {
       current.pause();
     } else {
       current.play();
     }
 
-    setIsPlaying(!isPlaying);
+    dispatch({
+      type: SET_PLAYING,
+      isPlaying: !state.isPlaying,
+    });
   };
 
   const onLoadedMetadata = () => {
     const { current } = audio;
 
-    setDuration(current.duration);
+    dispatch({
+      type: SET_DURATION,
+      duration: current.duration,
+    });
   };
 
   const onTimeUpdate = () => {
     const { current } = audio;
     const { currentTime } = current;
-    const newProgress = (currentTime / duration) * 100;
+    const newProgress = (currentTime / state.duration) * 100;
 
-    setTimePlaying(currentTime);
-    setProgress(newProgress);
+    dispatch({
+      type: SET_TIMEUPDATE,
+      timePlaying: currentTime,
+      progress: newProgress,
+    });
   };
 
   const onSkipAhead = e => {
@@ -104,20 +127,24 @@ export default ({
 
     const position = (event.pageX - el.offsetLeft) / el.offsetWidth;
 
-    current.currentTime = position * duration;
+    current.currentTime = position * state.duration;
   };
 
   const onDragOn = () => {
     const { current } = audio;
     current.pause();
-    setIsDragHold(true);
+
+    dispatch({
+      type: SET_DRAG_HOLD,
+      isDragHold: true,
+    });
   };
 
 
   const onEnded = () => {
-    setIsDragHold(false);
-    setProgress(0);
-    setTimePlaying(0);
+    dispatch({
+      type: RESET,
+    });
   };
 
   return (
@@ -135,12 +162,12 @@ export default ({
       <div className="player-progress">
         <progress
           onClick={onSkipAhead}
-          value={timePlaying}
-          max={duration}
+          value={state.timePlaying}
+          max={state.duration}
         />
-        <div style={{ width: `${progress}%` }} className="player-progress-bar" />
+        <div style={{ width: `${state.progress}%` }} className="player-progress-bar" />
         <button
-          style={{ left: `${progress}%` }}
+          style={{ left: `${state.progress}%` }}
           className="player-progress-bar__btn"
           type="button"
           aria-label="Thumb"
@@ -149,19 +176,19 @@ export default ({
         />
       </div>
       <div className="player-controls">
-        <span className="player__time">{convertTime(timePlaying)}</span>
+        <span className="player__time">{convertTime(state.timePlaying)}</span>
         <div className="player-buttons">
-          <button className="player__prev" type="button">
+          <button className="player__prev" type="button" onClick={onPrev}>
             <Icon src="prev-icon.svg" />
           </button>
           <button className="player__play" type="button" onClick={onPlay}>
-            <Icon src={isPlaying ? 'pause-icon--white-md.svg' : 'play-icon--white-md.svg'} />
+            <Icon src={state.isPlaying ? 'pause-icon--white-md.svg' : 'play-icon--white-md.svg'} />
           </button>
-          <button className="player__next" type="button">
+          <button className="player__next" type="button" onClick={onNext}>
             <Icon src="next-icon.svg" />
           </button>
         </div>
-        <span className="player__time">{convertTime(duration)}</span>
+        <span className="player__time">{convertTime(state.duration)}</span>
       </div>
       <div className="player-footer">
         {title}
