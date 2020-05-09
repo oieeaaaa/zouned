@@ -1,7 +1,11 @@
 module.exports = {
   up: (queryInterface) => queryInterface.bulkInsert('Songs', [{
-    title: 'Moonlight',
-    description: 'This is the moonlight',
+    title: 'Kathang Isip',
+    description: 'Kathang Isip -- Joimee\'s Cover',
+    artist: 'Joimee',
+    imgSrc: '/assets/joimee.jpg',
+    songSrc: '/assets/kathang-isip.m4a',
+    categoryID: 1,
     createdAt: new Date(),
     updatedAt: new Date(),
   }], {}),
