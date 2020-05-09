@@ -9,6 +9,24 @@ module.exports = {
     title: {
       type: Sequelize.STRING,
     },
+    artist: {
+      type: Sequelize.STRING,
+    },
+    imgSrc: {
+      type: Sequelize.STRING,
+      validate: {
+        isUrl: true,
+      },
+    },
+    songSrc: {
+      type: Sequelize.STRING,
+      validate: {
+        isUrl: true,
+      },
+    },
+    categoryID: {
+      type: Sequelize.INTEGER,
+    },
     description: {
       type: Sequelize.STRING,
     },
