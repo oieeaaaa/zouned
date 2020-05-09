@@ -4,24 +4,31 @@
   "private": true,
   "scripts": {
     "start": "next start",
-    "dev": "next dev",
+    "dev": "nodemon ./api/index.js",
     "build": "next build",
     "fix:eslint": "eslint --fix ./ --ext .js --ext .jsx",
     "fix:stylelint": "stylelint --fix ./**/*.{css,scss,sass}",
     "fix": "npm run fix:eslint && npm run fix:stylelint",
-    "component": "plop component"
+    "component": "plop component",
+    "db:generate:model": "sequelize model:generate",
+    "db:generate:seed": "sequelize seed:generate",
+    "db:migrate": "sequelize db:migrate",
+    "db:seed": "sequelize db:seed:all"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "lodash.throttle": "^4.1.1",
+    "mysql2": "^2.1.0",
     "next": "9.3.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-svg": "^11.0.21"
+    "react-svg": "^11.0.21",
+    "sequelize": "^5.21.7"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.4",
     "babel-eslint": "^10.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
@@ -32,7 +39,9 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "node-sass": "^4.13.1",
+    "nodemon": "^2.0.3",
     "plop": "^2.6.0",
+    "sequelize-cli": "^5.5.1",
     "stylelint": "^13.2.1",
     "stylelint-config-recommended-scss": "^4.2.0",
     "stylelint-config-standard": "^20.0.0",
