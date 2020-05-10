@@ -13,7 +13,7 @@
 - `yarn fix` = Lint all styles and scripts
 - `yarn fix:eslint` = Lint all scripts only
 - `yarn fix:stylelint` = Lint all styles only
-And more...
+- And more...
 
 ## Production
 1. Run `yarn build`
