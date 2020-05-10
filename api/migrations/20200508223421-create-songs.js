@@ -24,7 +24,7 @@ module.exports = {
         isUrl: true,
       },
     },
-    categoryID: {
+    categoryId: {
       type: Sequelize.INTEGER,
     },
     description: {

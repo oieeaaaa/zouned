@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     artist: DataTypes.STRING,
     imgSrc: DataTypes.STRING,
     songSrc: DataTypes.STRING,
-    categoryID: DataTypes.INTEGER,
   }, {});
-  Songs.associate = function () {
-    // associations can be defined here
+
+  Songs.associate = models => {
+    Songs.belongsTo(models.Categories, {
+      as: 'category',
+    });
   };
 
   return Songs;

@@ -5,7 +5,7 @@ module.exports = {
     artist: 'Joimee',
     imgSrc: '/assets/joimee.jpg',
     songSrc: '/assets/kathang-isip.m4a',
-    categoryID: 1,
+    categoryId: 1,
     createdAt: new Date(),
     updatedAt: new Date(),
   }], {}),

@@ -1,13 +1,24 @@
 const formidable = require('formidable');
 const path = require('path');
 const has = require('lodash.has');
-const { songs } = require('../../models.js');
+const { Songs, Categories } = require('../../models');
 
 const assetsDir = path.resolve(__dirname, '../../../public/assets');
 
 // GET
 const getSongs = async (req, res) => {
-  const data = await songs.findAll();
+  // SUPER COOL! (i just figured out associations in SEQUELIZE!)
+  const data = await Songs.findAll({
+    attributes: {
+      exclude: ['categoryId'],
+    },
+    include: [
+      {
+        model: Categories,
+        as: 'category',
+      },
+    ],
+  });
 
   res.send(data);
 };
@@ -29,7 +40,7 @@ const addSong = (req, res, next) => {
       imgSrc: `${assetsDir}/${files.imgSrc.name}`,
     };
 
-    const newData = await songs.create(data);
+    const newData = await Songs.create(data);
 
     res.send(newData);
   })
@@ -64,7 +75,7 @@ const editSong = (req, res, next) => {
       data.categoryID = parseInt(data.categoryID, 10);
     }
 
-    await songs.update(data, { where: { id: data.id } });
+    await Songs.update(data, { where: { id: data.id } });
 
     res.send('Successfully Updated');
   })
@@ -77,7 +88,7 @@ const editSong = (req, res, next) => {
 
 // DELETE
 const delSong = async (req, res) => {
-  await songs.destroy({ where: { id: req.body.id } });
+  await Songs.destroy({ where: { id: req.body.id } });
 
   res.send('Song is destroyed!');
 };
