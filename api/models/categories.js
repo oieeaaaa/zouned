@@ -3,5 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
   }, {});
 
+  Categories.associate = models => {
+    Categories.hasMany(models.Songs, {
+      foreignKey: 'categoryId',
+      as: 'songs',
+    });
+  };
+
   return Categories;
 };

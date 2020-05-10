@@ -8,10 +8,20 @@ const {
   delSong,
 } = require('./modules/songs/songs');
 
-// routes
+const {
+  getCategorySongs,
+  getCategories,
+} = require('./modules/categories/categories');
+
+// SONGS
 router.get('/songs', getSongs);
 router.post('/songs', addSong);
 router.put('/songs', editSong);
 router.delete('/songs', delSong);
+
+// CATEGORIES
+router.get('/categories/:id/songs', getCategorySongs);
+router.get('/categories', getCategories);
+
 
 module.exports = router;
