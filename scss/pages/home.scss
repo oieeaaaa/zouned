@@ -1,0 +1,35 @@
+.home {
+  & > * {
+    grid-column: 2 / -2;
+  }
+
+  & > .search {
+    margin-top: rem(40);
+    margin-bottom: rem(40);
+  }
+
+  &-group {}
+
+  &-group--categories {}
+
+  &-group--sounds-of-the-week {
+    margin-top: rem(60);
+  }
+
+  &-group__title {
+    margin-bottom: rem(20);
+
+    @include font('Light');
+
+    font-size: rem(21);
+    line-height: rem(26);
+    text-transform: lowercase;
+    color: $dark-4;
+  }
+
+  &-group--categories > &-group__content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: rem(10);
+  }
+}
