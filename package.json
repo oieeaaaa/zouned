@@ -9,12 +9,13 @@
     "fix:eslint": "eslint --fix ./ --ext .js --ext .jsx",
     "fix:stylelint": "stylelint --fix ./**/*.{css,scss,sass}",
     "fix": "npm run fix:eslint && npm run fix:stylelint",
-    "init:db": "npm run db:migrate && npm run db:seed",
     "component": "plop component",
+    "db:init": "npm run db:migrate && npm run db:seed",
     "db:generate:model": "sequelize model:generate",
     "db:generate:seed": "sequelize seed:generate",
     "db:migrate": "sequelize db:migrate",
-    "db:seed": "sequelize db:seed:all"
+    "db:seed": "sequelize db:seed:all",
+    "db:clean": "sequelize db:migrate:undo:all"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
