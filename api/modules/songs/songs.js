@@ -1,6 +1,7 @@
 const formidable = require('formidable');
 const path = require('path');
 const has = require('lodash.has');
+const mm = require('music-metadata');
 const { Songs, Categories } = require('../../models');
 
 const assetsDir = path.resolve(__dirname, '../../../public/assets');
@@ -33,11 +34,14 @@ const addSong = (req, res, next) => {
       return;
     }
 
+    const { format } = await mm.parseFile(files.songSrc.path);
+
     const data = {
       ...fields,
       categoryID: parseInt(fields.categoryID, 10),
       songSrc: `${assetsDir}/${files.songSrc.name}`,
       imgSrc: `${assetsDir}/${files.imgSrc.name}`,
+      duration: format.duration,
     };
 
     const newData = await Songs.create(data);
@@ -63,11 +67,18 @@ const editSong = (req, res, next) => {
     const data = fields;
     const fileKeys = Object.keys(files);
 
-    // check if there is any file/s need to be updated
+    // check if there is any file paths need to be updated
     if (fileKeys.length !== 0) {
       fileKeys.forEach(key => {
         data[key] = `${assetsDir}/${files[key].name}`;
       });
+    }
+
+    // update song duration too (if songSrc exists in the payload)
+    if ('songSrc' in files) {
+      const { format } = await mm.parseFile(files.songSrc.path);
+
+      data.duration = format.duration;
     }
 
     // check if payload contains categoryID
@@ -77,7 +88,9 @@ const editSong = (req, res, next) => {
 
     await Songs.update(data, { where: { id: data.id } });
 
-    res.send('Successfully Updated');
+    const updatedSong = await Songs.findOne({ where: { id: data.id } });
+
+    res.send(updatedSong);
   })
     // store file in /public/assets directory
     .on('fileBegin', (name, file) => {
@@ -90,7 +103,10 @@ const editSong = (req, res, next) => {
 const delSong = async (req, res) => {
   await Songs.destroy({ where: { id: req.body.id } });
 
-  res.send('Song is destroyed!');
+  res.send({
+    msg: 'Song is destroyed!',
+    id: req.body.id,
+  });
 };
 
 module.exports = {

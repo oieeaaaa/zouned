@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     artist: DataTypes.STRING,
     imgSrc: DataTypes.STRING,
     songSrc: DataTypes.STRING,
+    duration: DataTypes.INTEGER,
   }, {});
 
   Songs.associate = models => {
