@@ -10,6 +10,7 @@
 @import './utils/rem';
 @import './utils/font';
 @import './utils/grid';
+@import './utils/set-width';
 
 // pages
 @import './pages/home';
@@ -20,6 +21,8 @@
 @import 'styleguide/nav/nav';
 
 // components
+@import 'components/SongList/SongList';
+
 @import 'components/Layout/Layout';
 
 @import 'components/Player/Player';

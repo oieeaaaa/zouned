@@ -1,0 +1,47 @@
+/*
+***************************************
+Component: SongList
+Author: Joimee
+Description: Display list of songs
+***************************************
+*/
+
+.song-list {
+  &-header,
+  &-body__item {
+    display: grid;
+    grid-template-columns: set-width(40, 300) set-width(151, 300) set-width(67, 300);
+    grid-column-gap: rem(20);
+  }
+
+  &-header__item {
+    @include font('Light');
+
+    color: $dark-3;
+  }
+
+  &-body {
+    margin-top: rem(30);
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-body > &-body__item:not(:last-child) {
+    margin-bottom: rem(30);
+  }
+
+  &__text {
+    @include font('Light');
+
+    color: $dark-3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__text--center {
+    @include font();
+
+    color: $dark-1--2;
+  }
+}

@@ -1,4 +1,6 @@
 // list of components
+import SongList from 'components/SongList/SongList.styleguide';
+
 import Layout from 'components/Layout/Layout.styleguide';
 
 import Player from 'components/Player/Player.styleguide';
@@ -19,6 +21,11 @@ import Button from 'components/button/button.styleguide';
 
 
 export default [
+  {
+    name: 'SongList',
+    component: SongList,
+  },
+
   {
     name: 'Layout',
     component: Layout,

@@ -1,0 +1,3 @@
+@function set-width($width, $total-width) {
+  @return ($width / $total-width) * 100%;
+}
