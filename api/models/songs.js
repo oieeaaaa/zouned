@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Songs.associate = models => {
     Songs.belongsTo(models.Categories, {
+      foreignKey: 'categoryId',
       as: 'category',
     });
   };

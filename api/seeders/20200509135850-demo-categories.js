@@ -15,6 +15,11 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     },
+    {
+      name: 'Cool',
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   ], {}),
   down: (queryInterface) => queryInterface.bulkDelete('Categories', null, {}),
 };
