@@ -37,11 +37,18 @@ Description: Display list of songs
     color: $dark-3;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: rem(16);
+    line-height: rem(20);
+    text-align: left;
   }
 
   &__text--center {
     @include font();
 
     color: $dark-1--2;
+  }
+
+  &-body__item--active > &__text--center {
+    color: $primary;
   }
 }
