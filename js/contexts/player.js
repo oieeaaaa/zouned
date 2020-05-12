@@ -1,8 +1,9 @@
 import { createContext } from 'react';
 
 const PlayerContext = createContext({
+  isPlaying: false,
+  song: {},
   onPlay: () => {},
-  onPause: () => {},
   onNext: () => {},
   onPrev: () => {},
 });
