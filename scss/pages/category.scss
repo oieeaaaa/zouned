@@ -1,0 +1,16 @@
+.category {
+  & > * {
+    grid-column: 2 / -2;
+  }
+
+  &__title {
+    margin-top: rem(40);
+    margin-bottom: rem(40);
+
+    @include font('Bold');
+
+    font-size: rem(24);
+    line-height: rem(29);
+    color: $primary;
+  }
+}
