@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import Layout from 'components/Layout/Layout';
 import Search from 'components/Search/Search';
 import MinimalCard from 'components/MinimalCard/MinimalCard';
@@ -21,11 +22,11 @@ const Home = () => {
         <h3 className="home-group__title">Explore</h3>
         <div className="home-group__content">
           {categories.map(({ name, id }) => (
-            <MinimalCard
-              key={id}
-              label={name}
-              onClick={() => {}}
-            />
+            <Link key={id} href="/category/[id]" as={`/category/${id}`}>
+              <a>
+                <MinimalCard label={name} />
+              </a>
+            </Link>
           ))}
         </div>
       </div>
