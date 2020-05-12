@@ -33,6 +33,7 @@
     "func-names": "off",
     "no-param-reassign": "off",
     "arrow-parens": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "jsx-a11y/anchor-is-valid": "off",
   }
 }

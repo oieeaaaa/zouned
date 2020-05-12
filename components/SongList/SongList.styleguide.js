@@ -8,7 +8,7 @@ NOTE: Not for production use
 
 import SongList from './SongList';
 
-const songs = [
+export const songs = [
   {
     id: 1,
     title: 'Kathang Isip',

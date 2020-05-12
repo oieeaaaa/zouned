@@ -1,7 +1,8 @@
 /* eslint
   jsx-a11y/media-has-caption: "off",
   jsx-a11y/no-noninteractive-element-interactions: "off",
-  jsx-a11y/click-events-have-key-events: "off"
+  jsx-a11y/click-events-have-key-events: "off",
+  no-use-before-define: "off"
 */
 
 /*
@@ -20,20 +21,23 @@ playerReducer,
 {
   initState,
   SET_PLAYING,
-  SET_DURATION,
   SET_DRAG_HOLD,
   SET_TIMEUPDATE,
   RESET,
 } from './PlayerReducer';
 
 export default ({
-  title,
-  songSrc,
   onNext,
   onPrev,
+  isPlaying,
+  song,
 }) => {
   const audio = useRef(null);
   const [state, dispatch] = useReducer(playerReducer, initState);
+
+  useEffect(() => {
+    togglePlay(isPlaying);
+  }, [isPlaying, song.songSrc]);
 
   useEffect(() => {
     if (!audio) return;
@@ -49,7 +53,7 @@ export default ({
 
       const position = (el.clientX / window.innerWidth);
 
-      current.currentTime = position * state.duration;
+      current.currentTime = position * song.duration;
     }, 50);
 
 
@@ -77,37 +81,42 @@ export default ({
       window.removeEventListener('mouseup', onDragOff);
       window.removeEventListener('touchend', onDragOff);
     };
-  }, [audio, state.duration, state.isDragHold]);
+  }, [audio, song.duration, state.isDragHold]);
 
-  const onPlay = e => {
-    e.preventDefault();
+  const onPlay = () => {
     const { current } = audio;
 
-    if (state.isPlaying) {
-      current.pause();
-    } else {
-      current.play();
-    }
+    current.play();
 
     dispatch({
       type: SET_PLAYING,
-      isPlaying: !state.isPlaying,
+      isPlaying: true,
     });
   };
 
-  const onLoadedMetadata = () => {
+  const onPause = () => {
     const { current } = audio;
 
+    current.pause();
+
     dispatch({
-      type: SET_DURATION,
-      duration: current.duration,
+      type: SET_PLAYING,
+      isPlaying: false,
     });
   };
+
+  function togglePlay(isPlaying1) {
+    if (isPlaying1) {
+      onPlay();
+    } else {
+      onPause();
+    }
+  }
 
   const onTimeUpdate = () => {
     const { current } = audio;
     const { currentTime } = current;
-    const newProgress = (currentTime / state.duration) * 100;
+    const newProgress = (currentTime / song.duration) * 100;
 
     dispatch({
       type: SET_TIMEUPDATE,
@@ -127,7 +136,7 @@ export default ({
 
     const position = (event.pageX - el.offsetLeft) / el.offsetWidth;
 
-    current.currentTime = position * state.duration;
+    current.currentTime = position * song.duration;
   };
 
   const onDragOn = () => {
@@ -151,19 +160,17 @@ export default ({
     <div className="player">
       <audio
         ref={audio}
-        onLoadedMetadata={onLoadedMetadata}
         onTimeUpdate={onTimeUpdate}
         controls={false}
         preload="metadata"
         onEnded={onEnded}
-      >
-        <source src={songSrc} type="audio/mp3" />
-      </audio>
+        src={song.songSrc}
+      />
       <div className="player-progress">
         <progress
           onClick={onSkipAhead}
           value={state.timePlaying}
-          max={state.duration}
+          max={song.duration}
         />
         <div style={{ width: `${state.progress}%` }} className="player-progress-bar" />
         <button
@@ -181,17 +188,17 @@ export default ({
           <button className="player__prev" type="button" onClick={onPrev}>
             <Icon src="prev-icon.svg" />
           </button>
-          <button className="player__play" type="button" onClick={onPlay}>
+          <button className="player__play" type="button" onClick={() => togglePlay(!state.isPlaying)}>
             <Icon src={state.isPlaying ? 'pause-icon--white-md.svg' : 'play-icon--white-md.svg'} />
           </button>
           <button className="player__next" type="button" onClick={onNext}>
             <Icon src="next-icon.svg" />
           </button>
         </div>
-        <span className="player__time">{convertTime(state.duration)}</span>
+        <span className="player__time">{convertTime(song.duration)}</span>
       </div>
       <div className="player-footer">
-        {title}
+        {song.title}
       </div>
     </div>
   );
