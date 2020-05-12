@@ -39,8 +39,8 @@ const addSong = (req, res, next) => {
     const data = {
       ...fields,
       categoryID: parseInt(fields.categoryID, 10),
-      songSrc: `${assetsDir}/${files.songSrc.name}`,
-      imgSrc: `${assetsDir}/${files.imgSrc.name}`,
+      songSrc: `/assets/${files.songSrc.name}`,
+      imgSrc: `/assets/${files.imgSrc.name}`,
       duration: format.duration,
     };
 
@@ -70,7 +70,7 @@ const editSong = (req, res, next) => {
     // check if there is any file paths need to be updated
     if (fileKeys.length !== 0) {
       fileKeys.forEach(key => {
-        data[key] = `${assetsDir}/${files[key].name}`;
+        data[key] = `/assets/${files[key].name}`;
       });
     }
 
