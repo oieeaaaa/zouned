@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const formidable = require('formidable');
 const path = require('path');
 const has = require('lodash.has');
@@ -8,8 +9,12 @@ const assetsDir = path.resolve(__dirname, '../../../public/assets');
 
 // GET
 const getSongs = async (req, res) => {
-  // SUPER COOL! (i just figured out associations in SEQUELIZE!)
-  const data = await Songs.findAll({
+  const { query } = req;
+
+  const options = {
+    replacements: {
+      query: query.search,
+    },
     attributes: {
       exclude: ['categoryId'],
     },
@@ -19,7 +24,19 @@ const getSongs = async (req, res) => {
         as: 'category',
       },
     ],
-  });
+  };
+
+  // if the user wants to search we give it to him
+  if ('search' in query && query.search !== '') {
+    options.where = {
+      title: {
+        [Op.like]: `${query.search}%`,
+      },
+    };
+  }
+
+  // SUPER COOL! (i just figured out associations in SEQUELIZE!)
+  const data = await Songs.findAll(options);
 
   res.send(data);
 };
