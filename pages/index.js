@@ -12,7 +12,7 @@ const Home = () => {
   const [songs, setSongs] = useState([]);
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
-  const player = useContext(PlayerContext);
+  const { onPlay, updateQueue } = useContext(PlayerContext);
 
   useEffect(() => {
     fetchApi('categories').then(data => {
@@ -27,6 +27,7 @@ const Home = () => {
 
     fetchApi(`songs?search=${search}`).then(data => {
       setSongs(data);
+      updateQueue(data);
     });
   };
 
@@ -44,7 +45,7 @@ const Home = () => {
     <Layout className="home grid" title="Zouned">
       <Search onSubmit={handleSearchSubmit} onChange={handleSearchChange} value={search} />
       {songs.length ? (
-        <SongList onPlay={player.onPlay} list={songs} />
+        <SongList onPlay={onPlay} list={songs} />
       ) : (
         <>
           <div className="home-group home-group--categories">
