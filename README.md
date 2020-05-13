@@ -1,5 +1,7 @@
 # Zouned
 
+[Design Specs](https://projects.invisionapp.com/prototype/ck9s1m5ya00b6i301r3jrekwa/play)
+
 ## Project Setup
 1. Create `zouned` database
 1. Configure database in `./api/config/database.js` file
