@@ -81,7 +81,7 @@ export default ({
       window.removeEventListener('mouseup', onDragOff);
       window.removeEventListener('touchend', onDragOff);
     };
-  }, [audio, song.duration, state.isDragHold]);
+  }, [audio, song.duration, state.isDragHold, state.isPlaying]);
 
   const onPlay = () => {
     const { current } = audio;
@@ -105,8 +105,8 @@ export default ({
     });
   };
 
-  function togglePlay(isPlaying1) {
-    if (isPlaying1) {
+  function togglePlay(playingState) {
+    if (playingState) {
       onPlay();
     } else {
       onPause();
