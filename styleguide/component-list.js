@@ -1,4 +1,6 @@
 // list of components
+import Carousel from 'components/Carousel/Carousel.styleguide';
+
 import SongList from 'components/SongList/SongList.styleguide';
 
 import Layout from 'components/Layout/Layout.styleguide';
@@ -21,6 +23,11 @@ import Button from 'components/button/button.styleguide';
 
 
 export default [
+  {
+    name: 'Carousel',
+    component: Carousel,
+  },
+
   {
     name: 'SongList',
     component: SongList,
