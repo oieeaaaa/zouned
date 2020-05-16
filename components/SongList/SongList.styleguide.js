@@ -24,6 +24,7 @@ export const songs = [
       createdAt: '2020-05-10T00:35:12.000Z',
       updatedAt: '2020-05-10T00:35:12.000Z',
     },
+    duration: 10,
   },
   {
     id: 2,
@@ -40,6 +41,7 @@ export const songs = [
       createdAt: '2020-05-10T00:35:12.000Z',
       updatedAt: '2020-05-10T00:35:12.000Z',
     },
+    duration: 83,
   },
   {
     id: 3,
@@ -56,6 +58,7 @@ export const songs = [
       createdAt: '2020-05-10T00:35:12.000Z',
       updatedAt: '2020-05-10T00:35:12.000Z',
     },
+    duration: 55,
   },
 ];
 

@@ -8,7 +8,7 @@ NOTE: Not for production use
 
 import Carousel from './Carousel';
 
-const carouselList = [
+export const carouselList = [
   {
     name: 'Wonder Boy',
     img: 'https://bit.ly/2zCM6iI',

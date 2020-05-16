@@ -1,0 +1,38 @@
+.play-queue {
+  & > * {
+    grid-column: 2 / -2;
+  }
+
+  &__title {
+    margin-top: rem(40);
+    margin-bottom: rem(10);
+
+    @include font('Bold');
+
+    font-size: rem(24);
+    line-height: rem(29);
+    color: $primary;
+  }
+
+  &__author {
+    margin-bottom: rem(30);
+
+    @include font('Light');
+
+    color: $primary;
+  }
+
+  & > .carousel {
+    margin-bottom: rem(60);
+  }
+
+  &__heading {
+    margin-bottom: rem(30);
+
+    @include font('Bold');
+
+    font-size: rem(20);
+    line-height: rem(24);
+    color: $primary;
+  }
+}
