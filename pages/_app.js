@@ -52,6 +52,7 @@ export default ({ Component, pageProps }) => {
         onPlay: handlePlay,
         updateQueue: setQueue,
         activeSong: song || {},
+        isPlaying,
       }}
       >
         <Component {...pageProps} />
