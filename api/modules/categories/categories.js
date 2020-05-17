@@ -23,7 +23,7 @@ const getPlayQueue = async (req, res) => {
     where: { id: params.id },
   });
 
-  const songs = await Categories.findOne({
+  const categorySongs = await Categories.findOne({
     where: { id: song.categoryId },
     include: {
       model: Songs,
@@ -33,7 +33,7 @@ const getPlayQueue = async (req, res) => {
 
   res.send({
     song,
-    queue: songs,
+    queue: categorySongs.songs,
   });
 };
 
