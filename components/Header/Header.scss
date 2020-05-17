@@ -32,7 +32,14 @@ Description: Layout > Header
     justify-content: flex-end;
   }
 
-  &-buttons > &__btn:first-child {
-    margin-right: rem(35);
+  &__btn {
+    @include flex-center;
+  }
+
+  &__btn:disabled {
+    path {
+      fill: $dark-3;
+      stroke: $dark-3;
+    }
   }
 }
