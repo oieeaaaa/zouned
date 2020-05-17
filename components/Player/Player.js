@@ -86,7 +86,7 @@ export default ({
   const onPlay = () => {
     const { current } = audio;
 
-    current.play();
+    current.play().catch(console.log);
 
     dispatch({
       type: SET_PLAYING,
