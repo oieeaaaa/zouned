@@ -15,6 +15,28 @@ const getCategorySongs = async (req, res) => {
   res.send(data);
 };
 
+// GET -- with PLAY QUEUE
+const getPlayQueue = async (req, res) => {
+  const { params } = req;
+
+  const song = await Songs.findOne({
+    where: { id: params.id },
+  });
+
+  const songs = await Categories.findOne({
+    where: { id: song.categoryId },
+    include: {
+      model: Songs,
+      as: 'songs',
+    },
+  });
+
+  res.send({
+    song,
+    queue: songs,
+  });
+};
+
 // GET
 const getCategories = async (req, res) => {
   const data = await Categories.findAll();
@@ -24,5 +46,6 @@ const getCategories = async (req, res) => {
 
 module.exports = {
   getCategorySongs,
+  getPlayQueue,
   getCategories,
 };

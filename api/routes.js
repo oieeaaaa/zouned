@@ -11,6 +11,7 @@ const {
 const {
   getCategorySongs,
   getCategories,
+  getPlayQueue,
 } = require('./modules/categories/categories');
 
 // SONGS
@@ -21,6 +22,7 @@ router.delete('/songs', delSong);
 
 // CATEGORIES
 router.get('/categories/:id/songs', getCategorySongs);
+router.get('/categories/:id/play-queue', getPlayQueue);
 router.get('/categories', getCategories);
 
 
