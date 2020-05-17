@@ -17,6 +17,7 @@ Description:
   &__item {
     flex-shrink: 0;
     width: set-width(225, 300);
+    height: 100%;
     user-select: none;
     pointer-events: none;
     overflow: hidden;
@@ -26,6 +27,10 @@ Description:
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  .flickity-slider {
+    height: rem(221);
   }
 
   .flickity-slider > &__item:not(:last-child) {
