@@ -36,4 +36,8 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: rem(10);
   }
+
+  &-group--sounds-of-the-week .play-card:not(:last-child) {
+    margin-bottom: rem(20);
+  }
 }

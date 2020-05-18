@@ -12,11 +12,16 @@ const Home = () => {
   const [songs, setSongs] = useState([]);
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
+  const [soundsOfTheWeek, setSoundsOfTheWeek] = useState([]);
   const { onPlay, updateQueue } = useContext(PlayerContext);
 
   useEffect(() => {
     fetchApi('categories').then(data => {
       setCategories(data);
+    });
+
+    fetchApi('songs/sounds-of-the-week').then(data => {
+      setSoundsOfTheWeek(data);
     });
   }, []);
 
@@ -63,12 +68,15 @@ const Home = () => {
           <div className="home-group home-group--sounds-of-the-week">
             <h3 className="home-group__title">Sounds of the week</h3>
             <div className="home-group__content">
-              <PlayCard
-                title="Moonlight"
-                coverImg="https://bit.ly/35QkYJ9"
-                isPlaying={false}
-                onPlay={() => {}}
-              />
+              {soundsOfTheWeek.map(song => (
+                <PlayCard
+                  key={song.id}
+                  title={song.title}
+                  coverImg={song.imgSrc}
+                  isPlaying={false}
+                  onPlay={() => onPlay(song)}
+                />
+              ))}
             </div>
           </div>
         </>
