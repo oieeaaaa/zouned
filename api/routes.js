@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 // handlers
 const {
+  getSoundsOfTheWeek,
   getSongs,
   addSong,
   editSong,
@@ -15,10 +16,11 @@ const {
 } = require('./modules/categories/categories');
 
 // SONGS
+router.get('/songs/sounds-of-the-week', getSoundsOfTheWeek);
 router.get('/songs', getSongs);
 router.post('/songs', addSong);
 router.put('/songs', editSong);
-router.delete('/songs', delSong);
+router.delete('/songs/:id', delSong);
 
 // CATEGORIES
 router.get('/categories/:id/songs', getCategorySongs);

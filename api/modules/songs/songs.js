@@ -4,8 +4,22 @@ const path = require('path');
 const has = require('lodash.has');
 const mm = require('music-metadata');
 const { Songs, Categories } = require('../../models');
+const getLastWeek = require('../../../js/helpers/getLastWeek');
 
 const assetsDir = path.resolve(__dirname, '../../../public/assets');
+
+// GET -- with Sounds of the Week
+const getSoundsOfTheWeek = async (req, res) => {
+  const data = await Songs.findAll({
+    where: {
+      createdAt: {
+        [Op.gte]: getLastWeek(),
+      },
+    },
+  });
+
+  res.send(data);
+};
 
 // GET
 const getSongs = async (req, res) => {
@@ -118,7 +132,9 @@ const editSong = (req, res, next) => {
 
 // DELETE
 const delSong = async (req, res) => {
-  await Songs.destroy({ where: { id: req.body.id } });
+  const { query } = req;
+
+  await Songs.destroy({ where: { id: query.id } });
 
   res.send({
     msg: 'Song is destroyed!',
@@ -127,6 +143,7 @@ const delSong = async (req, res) => {
 };
 
 module.exports = {
+  getSoundsOfTheWeek,
   getSongs,
   addSong,
   editSong,
