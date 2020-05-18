@@ -60,7 +60,7 @@ export default ({ Component, pageProps }) => {
       {song && (
         <Player
           isPlaying={isPlaying}
-          onPlay={handlePlay}
+          setIsPlaying={setIsPlaying}
           onNext={handleNext}
           onPrev={handlePrev}
           song={song}

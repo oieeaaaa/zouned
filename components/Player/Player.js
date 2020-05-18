@@ -30,6 +30,7 @@ export default ({
   onNext,
   onPrev,
   isPlaying,
+  setIsPlaying,
   song,
 }) => {
   const audio = useRef(null);
@@ -92,6 +93,8 @@ export default ({
       type: SET_PLAYING,
       isPlaying: true,
     });
+
+    setIsPlaying(true);
   };
 
   const onPause = () => {
@@ -103,6 +106,8 @@ export default ({
       type: SET_PLAYING,
       isPlaying: false,
     });
+
+    setIsPlaying(false);
   };
 
   function togglePlay(playingState) {
