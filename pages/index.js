@@ -2,7 +2,6 @@ import {
   useReducer,
   useEffect,
   useContext,
-  useCallback,
 } from 'react';
 import Link from 'next/link';
 import Layout from 'components/Layout/Layout';
@@ -88,10 +87,8 @@ const Home = () => {
     });
   }, []);
 
-  console.log(isPlaying);
 
   useEffect(() => {
-    console.log(state);
     dispatch({
       type: PLAY_SOUNDS_OF_THE_WEEK,
       isSoundsOfTheWeekPlaying: isPlaying,
