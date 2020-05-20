@@ -7,17 +7,26 @@ Description:
 */
 
 .search {
+  background-color: $light-1;
+
   &-box {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr set-width(80, 298);
     align-items: center;
     height: rem(40);
     box-shadow: $shadow-2;
+    padding: rem(2);
+
+    @include tablet-p {
+      grid-template-columns: 1fr set-width(114, 508);
+      height: rem(50);
+      padding: rem(5);
+    }
   }
 
   &__input {
     @include font('Light');
 
-    flex-basis: (218 / 298) * 100%;
     padding-left: rem(20);
     font-size: rem(18);
     line-height: rem(22);
@@ -35,16 +44,17 @@ Description:
   }
 
   &__btn {
-    margin-right: rem(2);
-
     @include flex-center;
     @include font('Bold');
 
     font-size: rem(16);
     line-height: rem(20);
     height: rem(36);
-    flex-basis: (80 / 298) * 100%;
     color: $light-3;
     background-color: $primary;
+
+    @include tablet-p {
+      height: rem(40);
+    }
   }
 }

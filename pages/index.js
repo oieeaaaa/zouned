@@ -37,7 +37,7 @@ const homeReducer = (state, action) => {
     case SET_SEARCH:
       return ({
         ...state,
-        songs: action.search,
+        search: action.search,
       });
     case SET_CATEGORIES:
       return ({

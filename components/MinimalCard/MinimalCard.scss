@@ -12,9 +12,16 @@ Description:
 
   min-height: rem(80);
   min-width: rem(144);
+  width: 100%;
   border: rem(1) solid $dark-3;
   font-size: rem(18);
   line-height: rem(22);
   color: $dark-3;
   text-transform: lowercase;
+
+  @include tablet-p {
+    min-height: rem(100);
+    font-size: rem(21);
+    line-height: rem(26);
+  }
 }

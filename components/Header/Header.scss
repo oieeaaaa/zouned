@@ -13,6 +13,10 @@ Description: Layout > Header
   .grid {
     height: rem(40);
     align-items: center;
+
+    @include tablet-p {
+      height: rem(50);
+    }
   }
 
   &__brand {
@@ -41,5 +45,10 @@ Description: Layout > Header
       fill: $dark-3;
       stroke: $dark-3;
     }
+  }
+
+  &__btn > .icon svg {
+    width: rem(25);
+    height: rem(25);
   }
 }
