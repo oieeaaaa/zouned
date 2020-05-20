@@ -12,12 +12,20 @@ Description: Display list of songs
     display: grid;
     grid-template-columns: set-width(40, 300) set-width(151, 300) set-width(67, 300);
     grid-column-gap: rem(20);
+
+    @include tablet-p {
+      grid-template-columns: set-width(40, 640) set-width(480, 640) set-width(67, 640);
+    }
   }
 
   &-header__item {
     @include font('Light');
 
     color: $dark-3;
+
+    @include tablet-p {
+      font-size: rem(18);
+    }
   }
 
   &-body {
@@ -40,6 +48,11 @@ Description: Display list of songs
     font-size: rem(16);
     line-height: rem(20);
     text-align: left;
+
+    @include tablet-p {
+      font-size: rem(18);
+      line-height: rem(22);
+    }
   }
 
   &__text--center {

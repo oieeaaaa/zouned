@@ -12,5 +12,13 @@
     font-size: rem(24);
     line-height: rem(29);
     color: $primary;
+
+    @include tablet-p {
+      margin-top: rem(60);
+      margin-bottom: rem(50);
+
+      font-size: rem(32);
+      line-height: rem(39);
+    }
   }
 }
