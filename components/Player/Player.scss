@@ -20,7 +20,7 @@ Description:
     position: relative;
     width: 100%;
     height: rem(5);
-    background-color: $light-3;
+    background-color: $light-1;
   }
 
   &-progress > progress {
@@ -62,12 +62,20 @@ Description:
     justify-content: space-between;
     align-items: center;
     padding: rem(15) rem(20);
+
+    @include tablet-p {
+      padding: rem(15) rem(65);
+    }
   }
 
   &__time {
     @include font('Light');
 
     color: rgba($light-2, .6);
+
+    @include tablet-p {
+      font-size: rem(18);
+    }
   }
 
   &-buttons {
@@ -91,5 +99,10 @@ Description:
     height: rem(30);
     text-align: center;
     color: $light-3;
+
+    @include tablet-p {
+      font-size: rem(18);
+      height: rem(40);
+    }
   }
 }
