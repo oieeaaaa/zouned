@@ -12,6 +12,11 @@
     font-size: rem(24);
     line-height: rem(29);
     color: $primary;
+
+    @include tablet-p {
+      font-size: rem(32);
+      line-height: rem(39);
+    }
   }
 
   &__author {
@@ -20,6 +25,13 @@
     @include font('Light');
 
     color: $primary;
+
+    @include tablet-p {
+      margin-bottom: rem(40);
+
+      font-size: rem(18);
+      line-height: rem(22);
+    }
   }
 
   & > .carousel {
@@ -34,5 +46,10 @@
     font-size: rem(20);
     line-height: rem(24);
     color: $primary;
+
+    @include tablet-p {
+      font-size: rem(24);
+      line-height: rem(29);
+    }
   }
 }

@@ -10,6 +10,10 @@ Description:
   height: rem(221);
   overflow: hidden;
 
+  @include tablet-p {
+    height: rem(260);
+  }
+
   &-list {
     display: flex;
   }
@@ -21,6 +25,10 @@ Description:
     user-select: none;
     pointer-events: none;
     overflow: hidden;
+
+    @include tablet-p {
+      width: set-width(444, 640);
+    }
   }
 
   &__item > img {
@@ -31,6 +39,10 @@ Description:
 
   .flickity-slider {
     height: rem(221);
+
+    @include tablet-p {
+      height: rem(260);
+    }
   }
 
   .flickity-slider > &__item:not(:last-child) {
