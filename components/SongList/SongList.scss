@@ -16,6 +16,10 @@ Description: Display list of songs
     @include tablet-p {
       grid-template-columns: set-width(40, 640) set-width(480, 640) set-width(67, 640);
     }
+
+    @include tablet-l {
+      grid-template-columns: set-width(40, 910) set-width(752, 910) set-width(67, 910);
+    }
   }
 
   &-header__item {
