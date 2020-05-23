@@ -15,7 +15,7 @@ $grid-guides: (
 	),
 	tablet-l: (
 		size: 1024px,
-		cols: 12,
+		cols: 18,
     gap: 0,
 	),
 	desktop: (
@@ -73,7 +73,7 @@ $default-guide: map-get($grid-guides, "mobile");
 	display: grid;
 	grid-template-columns: repeat(map-get($default-guide, "cols"), 1fr);
 	grid-column-gap: map-get($default-guide, "gap");
-	max-width: map-get(get-guide("desktop"), "size");
+	max-width: map-get(get-guide("tablet-l"), "size");
 	margin: 0 auto;
 
 	@include tablet-p {

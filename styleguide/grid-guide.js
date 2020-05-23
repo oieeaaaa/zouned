@@ -16,7 +16,7 @@ const gridList = [
   },
   {
     name: 'tablet-l',
-    cols: 14,
+    cols: 18,
     gap: 10,
     size: 1024,
   },

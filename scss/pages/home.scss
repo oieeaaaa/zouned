@@ -12,6 +12,10 @@
       margin-top: rem(60);
       margin-bottom: rem(60);
     }
+
+    @include tablet-l {
+      grid-column: 4 / -4;
+    }
   }
 
   & > .song-list {
@@ -24,6 +28,10 @@
 
   &-group--sounds-of-the-week {
     margin-top: rem(60);
+
+    @include tablet-l {
+      margin-top: rem(80);
+    }
   }
 
   &-group__title {
@@ -53,12 +61,22 @@
       grid-template-columns: repeat(3, set-width(200, 640));
       grid-gap: rem(20);
     }
+
+    @include tablet-l {
+      grid-template-columns: repeat(4, set-width(220, 910));
+      grid-gap: rem(10);
+    }
   }
 
   &-group--sounds-of-the-week > &-group__content {
     @include tablet-p {
       display: grid;
       grid-template-columns: repeat(2, set-width(314, 638));
+      grid-gap: rem(10);
+    }
+
+    @include tablet-l {
+      grid-template-columns: repeat(3, set-width(294, 910));
       grid-gap: rem(10);
     }
   }
