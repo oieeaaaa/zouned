@@ -6,4 +6,10 @@ Description: Base layout
 ***************************************
 */
 
-.layout {}
+.layout {
+  padding-bottom: rem(97 + 20);
+
+  @include tablet-p {
+    padding-bottom: rem(107 + 20);
+  }
+}

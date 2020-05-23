@@ -17,6 +17,10 @@
       font-size: rem(32);
       line-height: rem(39);
     }
+
+    @include tablet-l {
+      margin-top: rem(60);
+    }
   }
 
   &__author {
