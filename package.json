@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next start",
+    "start": "nodemon ./api/index.js && next start",
     "dev": "nodemon ./api/index.js",
     "build": "next build",
     "fix:eslint": "eslint --fix ./ --ext .js --ext .jsx",
