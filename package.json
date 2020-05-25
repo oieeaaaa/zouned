@@ -15,7 +15,8 @@
     "db:generate:seed": "sequelize seed:generate",
     "db:migrate": "sequelize db:migrate",
     "db:seed": "sequelize db:seed:all",
-    "db:clean": "sequelize db:migrate:undo:all"
+    "db:clean": "sequelize db:migrate:undo:all",
+    "db:init:prod": "NODE_ENV=production npm run db:migrate && npm run db:seed"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
