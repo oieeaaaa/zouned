@@ -132,13 +132,13 @@ const editSong = (req, res, next) => {
 
 // DELETE
 const delSong = async (req, res) => {
-  const { query } = req;
+  const { params } = req;
 
-  await Songs.destroy({ where: { id: query.id } });
+  await Songs.destroy({ where: { id: params.id } });
 
   res.send({
     msg: 'Song is destroyed!',
-    id: req.body.id,
+    id: req.params.id,
   });
 };
 
