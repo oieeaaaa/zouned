@@ -1,22 +1,22 @@
 module.exports = {
   up: (queryInterface) => queryInterface.bulkInsert('Categories', [
     {
-      name: 'Binaurial',
+      name: 'Happy',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
-      name: 'Zen',
+      name: 'Energy',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
-      name: 'Nature',
+      name: 'Heavy',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
     {
-      name: 'Cool',
+      name: 'Chill',
       createdAt: new Date(),
       updatedAt: new Date(),
     },
