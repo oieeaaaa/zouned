@@ -10,6 +10,7 @@ const assetsDir = path.resolve(__dirname, '../../../public/assets');
 
 // GET -- with Sounds of the Week
 const getSoundsOfTheWeek = async (req, res) => {
+  console.log(getLastWeek.toString());
   const data = await Songs.findAll({
     where: {
       createdAt: {
@@ -81,6 +82,7 @@ const addSong = (req, res, next) => {
   })
     // store file in /public/assets directory
     .on('fileBegin', (name, file) => {
+      console.log({ assetsDir, fileName: file.name });
       file.path = `${assetsDir}/${file.name}`;
     });
 };
