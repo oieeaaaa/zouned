@@ -1,9 +1,19 @@
+require('dotenv').config(); // this is important!
 const Sequelize = require('sequelize');
 
-// db setup
-const db = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+const config = {
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   host: process.env.DB_HOST,
-  dialect: process.env.DB_DRIVER,
+};
+
+// db setup
+const db = new Sequelize(config.database, config.username, config.password, {
+  host: config.host,
+  dialect: 'mysql',
 });
+
+db.config = config;
 
 module.exports = db;
