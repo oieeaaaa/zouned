@@ -1,16 +1,16 @@
 module.exports = {
   production: {
-    username: 'prwwqkeda7n6qitk',
-    password: 'j6wil4vw58941fno',
-    database: 'fs2m39dnq5ixopv2',
-    host: 'pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_PASS,
+    host: process.env.DB_HOST,
     dialect: 'mysql',
   },
   development: {
-    username: 'prwwqkeda7n6qitk',
-    password: 'j6wil4vw58941fno',
-    database: 'fs2m39dnq5ixopv2',
-    host: 'pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_PASS,
+    host: process.env.DB_HOST,
     dialect: 'mysql',
   },
 };
