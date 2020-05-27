@@ -3,24 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./api/index.js",
+    "start": "NODE_ENV=production node ./api/index.js",
     "dev": "nodemon ./api/index.js",
     "build": "next build",
     "fix:eslint": "eslint --fix ./ --ext .js --ext .jsx",
     "fix:stylelint": "stylelint --fix ./**/*.{css,scss,sass}",
     "fix": "npm run fix:eslint && npm run fix:stylelint",
     "component": "plop component",
-    "db:init": "npm run db:migrate && npm run db:seed",
-    "db:generate:model": "sequelize model:generate",
-    "db:generate:seed": "sequelize seed:generate",
-    "db:migrate": "sequelize db:migrate",
-    "db:seed": "sequelize db:seed:all",
-    "db:clean": "sequelize db:migrate:undo:all",
-    "db:init:prod": "NODE_ENV=production npm run db:migrate && npm run db:seed"
+    "db:init": "sequelize db:migrate",
+    "db:clean": "sequelize db:migrate:undo:all"
   },
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "body-parser": "^1.19.0",
+    "cloudinary": "^1.21.0",
     "express": "^4.17.1",
     "flickity": "^2.2.1",
     "formidable": "^1.2.2",
