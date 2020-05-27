@@ -1,16 +1,16 @@
 module.exports = {
   production: {
-    username: 'root',
-    password: '',
-    database: 'zouned',
-    host: 'localhost',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_PASS,
+    host: process.env.DB_HOST,
     dialect: 'mysql',
   },
   development: {
-    username: 'root',
-    password: '',
-    database: 'zouned',
-    host: 'localhost',
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_PASS,
+    host: process.env.DB_HOST,
     dialect: 'mysql',
   },
 };
