@@ -32,13 +32,14 @@ export default ({
   isPlaying,
   setIsPlaying,
   song,
+  repeatCount,
 }) => {
   const audio = useRef(null);
   const [state, dispatch] = useReducer(playerReducer, initState);
 
   useEffect(() => {
     togglePlay(isPlaying);
-  }, [isPlaying, song.songSrc]);
+  }, [isPlaying, song.songSrc, repeatCount]);
 
   useEffect(() => {
     if (!audio) return;
@@ -159,6 +160,8 @@ export default ({
     dispatch({
       type: RESET,
     });
+
+    onNext();
   };
 
   return (

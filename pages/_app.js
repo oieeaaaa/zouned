@@ -1,13 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import Player from 'components/Player/Player';
 import PlayerContext from 'js/contexts/player';
+import fetchApi from 'js/helpers/fetchApi';
 
 import 'scss/main.scss';
 
 export default ({ Component, pageProps }) => {
   const [song, setSong] = useState(null);
+  const [queueURL, setQueueURL] = useState(''); // must be a back-end api route
   const [queue, setQueue] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [repeatCount, setRepeatCount] = useState(0);
+  const [cookies, setCookie, removeCookie] = useCookies(['queueURL']); // eslint-disable-line
+
+  useEffect(() => {
+    if (!queueURL && cookies.queueURL) {
+      fetchApi(cookies.queueURL).then(res => {
+        setQueue(res);
+      });
+    }
+  }, [cookies.queueURL]);
+
+  useEffect(() => {
+    if (cookies.queueURL) {
+      removeCookie('queueURL');
+    }
+
+    if (queueURL) {
+      fetchApi(queueURL).then(res => {
+        setQueue(res);
+      });
+    }
+
+    setCookie('queueURL', queueURL);
+  }, [queueURL]);
 
   const handlePlay = newSong => {
     // for changing of songs
@@ -28,6 +55,11 @@ export default ({ Component, pageProps }) => {
 
     // circulate forward through the queue
     const nextSong = queue[((currentSongIndex + 1) % queue.length)];
+
+    // count the number of play for Player's useEffect
+    if (nextSong.songSrc === song.songSrc) {
+      setRepeatCount(repeatCount + 1);
+    }
 
     setSong(nextSong);
     setIsPlaying(true);
@@ -50,9 +82,10 @@ export default ({ Component, pageProps }) => {
     <div>
       <PlayerContext.Provider value={{
         onPlay: handlePlay,
-        updateQueue: setQueue,
+        updateQueueURL: setQueueURL,
         activeSong: song || {},
         isPlaying,
+        queueURL,
       }}
       >
         <Component {...pageProps} />
@@ -64,6 +97,7 @@ export default ({ Component, pageProps }) => {
           onNext={handleNext}
           onPrev={handlePrev}
           song={song}
+          repeatCount={repeatCount}
         />
       )}
     </div>
