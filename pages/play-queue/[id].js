@@ -5,6 +5,7 @@ import {
   createRef,
 } from 'react';
 import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
 import Layout from 'components/Layout/Layout';
 import Carousel from 'components/Carousel/Carousel';
 import SongList from 'components/SongList/SongList';
@@ -16,52 +17,47 @@ import fetchApi from 'js/helpers/fetchApi';
 const carousel = createRef(null);
 
 const PlayQueue = () => {
-  const { activeSong, onPlay, updateQueue } = useContext(PlayerContext);
+  const { activeSong, onPlay } = useContext(PlayerContext);
   const [data, setData] = useState(null);
   const [initialIndex, setInitialIndex] = useState(0);
   const router = useRouter();
-
-  useEffect(() => {
-    if (!router) return;
-
-    // update the queue
-    fetchApi(`categories/${router.query.id}/play-queue`).then(res => {
-      setData(res);
-      updateQueue(res.queue);
-    });
-  }, [router]);
-
-  useEffect(() => {
-    if (!carousel.current || !data) return;
-    const { current } = carousel;
-    const activeSongIndex = data.queue.findIndex(song => song.id === activeSong.id);
-
-    // auto slide to the current song index
-    current.select(activeSongIndex);
-
-    // update song on slide
-    current.on('change', currentIndex => {
-      const newSong = data.queue[currentIndex];
-      if (!newSong) return;
-
-      setData(prevData => ({
-        ...prevData,
-        song: newSong,
-      }));
-
-      onPlay(newSong);
-    });
-  }, [carousel.current, activeSong, data]);
+  const [cookies] = useCookies(['queueURL']);
 
   useEffect(() => {
     if (!router || !data) return;
     const { query } = router;
     const songId = parseInt(query.id, 10);
 
-    const initialSongIndex = data.queue.findIndex(song => song.id === songId);
+    const initialSongIndex = data.findIndex(song => song.id === songId);
 
     setInitialIndex(initialSongIndex);
   }, [router, data]);
+
+  useEffect(() => {
+    if (!router) return;
+
+    // update the queue
+    fetchApi(cookies.queueURL).then(res => {
+      setData(res);
+    });
+  }, [router]);
+
+  useEffect(() => {
+    if (!carousel.current || !data) return;
+    const { current } = carousel;
+    const activeSongIndex = data.findIndex(song => song.id === activeSong.id);
+
+    // auto slide to the current song index
+    current.select(activeSongIndex);
+
+    // update song on slide
+    current.on('change', currentIndex => {
+      const newSong = data[currentIndex];
+      if (!newSong) return;
+
+      onPlay(newSong);
+    });
+  }, [carousel.current, activeSong, data]);
 
   // since flickity library uses the old way of passing ref
   // we cannot use the useRef hook here
@@ -73,15 +69,15 @@ const PlayQueue = () => {
 
   return (
     <Layout className="play-queue grid" title="Zouned | Play Queue">
-      <h1 className="play-queue__title">{data.song.title}</h1>
-      <p className="play-queue__author">{data.song.artist}</p>
+      <h1 className="play-queue__title">{activeSong.title}</h1>
+      <p className="play-queue__author">{activeSong.artist}</p>
       <Carousel
-        list={data.queue}
+        list={data}
         flickityRef={passRef}
         initialIndex={initialIndex}
       />
       <h3 className="play-queue__heading">Play Queue</h3>
-      <SongList list={data.queue} onPlay={onPlay} />
+      <SongList list={data} onPlay={onPlay} />
     </Layout>
   );
 };

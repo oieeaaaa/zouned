@@ -68,7 +68,7 @@ const homeReducer = (state, action) => {
 const Home = () => {
   const [state, dispatch] = useReducer(homeReducer, initState);
   const {
-    activeSong, isPlaying, onPlay, updateQueue,
+    activeSong, isPlaying, onPlay, updateQueueURL,
   } = useContext(PlayerContext);
 
   useEffect(() => {
@@ -106,7 +106,7 @@ const Home = () => {
         type: SET_SONGS,
         songs: data,
       });
-      updateQueue(data);
+      updateQueueURL(data);
     });
   };
 
@@ -128,7 +128,7 @@ const Home = () => {
   // TODO: create a togglePlay hook
   const handleSoundsOfTheWeekPlay = song => {
     onPlay(song);
-    updateQueue(state.soundsOfTheWeek);
+    updateQueueURL('songs/sounds-of-the-week');
   };
 
   return (

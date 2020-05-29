@@ -8,7 +8,7 @@ import fetchApi from 'js/helpers/fetchApi';
 
 const Category = () => {
   const router = useRouter();
-  const { onPlay, updateQueue } = useContext(PlayerContext);
+  const { onPlay, updateQueueURL } = useContext(PlayerContext);
   const [category, setCategory] = useState({
     songs: [],
   });
@@ -16,14 +16,18 @@ const Category = () => {
   useEffect(() => {
     fetchApi(`categories/${router.query.id}/songs`).then(data => {
       setCategory(data);
-      updateQueue(data.songs);
     });
   }, [router.query.id]);
+
+  const handlePlay = (song) => {
+    updateQueueURL(`categories/${router.query.id}/play-queue`);
+    onPlay(song);
+  };
 
   return (
     <Layout className="category grid" title={`Zouned | ${category.name}`}>
       <h1 className="category__title">{category.name}</h1>
-      <SongList onPlay={onPlay} list={category.songs} />
+      <SongList onPlay={handlePlay} list={category.songs} />
     </Layout>
   );
 };
