@@ -19,22 +19,15 @@ const getCategorySongs = async (req, res) => {
 const getPlayQueue = async (req, res) => {
   const { params } = req;
 
-  const song = await Songs.findOne({
-    where: { id: params.id },
-  });
-
   const categorySongs = await Categories.findOne({
-    where: { id: song.categoryId },
+    where: { id: params.id },
     include: {
       model: Songs,
       as: 'songs',
     },
   });
 
-  res.send({
-    song,
-    queue: categorySongs.songs,
-  });
+  res.send(categorySongs.songs);
 };
 
 // GET
