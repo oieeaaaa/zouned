@@ -23,7 +23,7 @@ export default ({ Component, pageProps }) => {
   }, [cookies.queueURL]);
 
   useEffect(() => {
-    if (cookies.queueURL) {
+    if ('queueURL' in cookies) {
       removeCookie('queueURL');
     }
 
