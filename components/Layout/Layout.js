@@ -14,6 +14,8 @@ export default ({ title, className, children }) => (
   <div className="layout">
     <Head>
       <title>{title}</title>
+      <link rel="icon" href="/favicon.png" />
+      <link rel="icon" type="image/png" href="/favicon.png" />
     </Head>
     <Header />
     <div className={className}>

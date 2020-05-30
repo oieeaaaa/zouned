@@ -24,6 +24,13 @@ Description:
     }
   }
 
+  @include desktop {
+    &:hover &-box,
+    &:focus &-box {
+      box-shadow: $shadow-2--active;
+    }
+  }
+
   &__input {
     @include font('Light');
 
@@ -52,6 +59,7 @@ Description:
     height: rem(36);
     color: $light-3;
     background-color: $primary;
+    cursor: pointer;
 
     @include tablet-p {
       height: rem(40);

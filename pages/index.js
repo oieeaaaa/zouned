@@ -106,7 +106,6 @@ const Home = () => {
         type: SET_SONGS,
         songs: data,
       });
-      updateQueueURL(data);
     });
   };
 
@@ -125,17 +124,21 @@ const Home = () => {
     });
   };
 
-  // TODO: create a togglePlay hook
   const handleSoundsOfTheWeekPlay = song => {
     onPlay(song);
     updateQueueURL('songs/sounds-of-the-week');
+  };
+
+  const handlePlay = song => {
+    onPlay(song);
+    updateQueueURL(`categories/${song.category.id}/play-queue`);
   };
 
   return (
     <Layout className="home grid" title="Zouned">
       <Search onSubmit={handleSearchSubmit} onChange={handleSearchChange} value={state.search} />
       {state.songs.length ? (
-        <SongList onPlay={onPlay} list={state.songs} />
+        <SongList onPlay={handlePlay} list={state.songs} />
       ) : (
         <>
           <div className="home-group home-group--categories">
