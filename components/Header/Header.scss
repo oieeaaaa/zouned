@@ -27,6 +27,7 @@ Description: Layout > Header
     font-size: rem(16);
     line-height: rem(20);
     color: $primary;
+    cursor: pointer;
   }
 
   &-buttons {
@@ -38,6 +39,8 @@ Description: Layout > Header
 
   &__btn {
     @include flex-center;
+
+    cursor: pointer;
   }
 
   &__btn:disabled {

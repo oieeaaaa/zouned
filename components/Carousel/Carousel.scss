@@ -15,7 +15,7 @@ Description:
   }
 
   @include tablet-l {
-    height: rem(300);
+    height: rem(500);
   }
 
   &-list {
@@ -36,6 +36,7 @@ Description:
 
     @include tablet-l {
       width: set-width(680, 910);
+      max-width: rem(500);
     }
   }
 
@@ -53,7 +54,7 @@ Description:
     }
 
     @include tablet-l {
-      height: rem(300);
+      height: rem(500);
     }
   }
 

@@ -16,6 +16,13 @@ Description:
   z-index: 1;
   overflow: hidden;
 
+  @include desktop {
+    &:hover {
+      box-shadow: $shadow-2--active;
+      cursor: pointer;
+    }
+  }
+
   &::before {
     @include center;
 
@@ -30,6 +37,10 @@ Description:
 
   &__btn {
     margin-right: rem(20);
+
+    @include desktop {
+      cursor: pointer;
+    }
   }
 
   &__title {

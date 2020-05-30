@@ -24,4 +24,12 @@ Description:
     font-size: rem(21);
     line-height: rem(26);
   }
+
+  @include desktop {
+    &:hover {
+      color: $primary;
+      border-color: $primary;
+      cursor: pointer;
+    }
+  }
 }

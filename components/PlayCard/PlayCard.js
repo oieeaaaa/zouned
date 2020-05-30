@@ -24,9 +24,14 @@ export default ({
       {`
           .play-card {
             background-image: url(${coverImg});
-            background-size: cover;
+            background-size: 100%;
             background-position: center;
             background-repeat: no-repeat;
+            transition: background-size 1s ease-in;
+          }
+
+          .play-card:hover {
+            background-size: 150%;
           }
       `}
     </style>

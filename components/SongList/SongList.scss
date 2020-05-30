@@ -63,6 +63,13 @@ Description: Display list of songs
     @include font();
 
     color: $dark-1--2;
+
+    @include desktop {
+      &:hover {
+        color: $primary;
+        cursor: pointer;
+      }
+    }
   }
 
   &-body__item--active > &__text--center {

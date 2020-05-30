@@ -53,8 +53,14 @@ Description:
     border-radius: 50%;
     background-color: $light-1;
     box-shadow: $shadow-2;
+    opacity: 0;
     cursor: pointer;
     z-index: 3;
+  }
+
+  &:hover &-progress-bar__btn {
+    opacity: 1;
+    transition: opacity .15s ease;
   }
 
   &-controls {
@@ -85,6 +91,17 @@ Description:
 
   &__play {
     margin: 0 rem(30);
+
+    @include desktop {
+      cursor: pointer;
+    }
+  }
+
+  &__next,
+  &__prev {
+    @include desktop {
+      cursor: pointer;
+    }
   }
 
   &__play svg {
