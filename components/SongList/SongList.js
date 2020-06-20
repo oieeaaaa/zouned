@@ -21,12 +21,12 @@ export default ({ list, onPlay }) => {
         <span className="song-list-header__item">duration</span>
       </div>
       <ul className="song-list-body">
-        {list.map(song => (
+        {list.map((song, index) => (
           <li
             className={`song-list-body__item${song.id === activeSong.id ? ' song-list-body__item--active' : ''}`}
             key={song.id}
           >
-            <p className="song-list__text">{song.id}</p>
+            <p className="song-list__text">{index + 1}</p>
             <button
               className="song-list__text song-list__text--center"
               type="button"
